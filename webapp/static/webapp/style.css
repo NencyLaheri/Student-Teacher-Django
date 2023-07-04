@@ -1,0 +1,12 @@
+table,th, td{
+    border: 1px solid black;
+}
+header{
+    background-color: lightgray;
+    margin: -8px;
+}
+td,th{
+    padding: 5px;
+    /* padding-block: 10px; */
+    padding-inline: 19px;
+}

@@ -1,0 +1,64 @@
+<html>
+    <body>
+        <center>
+        {% if request.session.email %}
+        {% load static%}
+        <link rel="stylesheet" href="{% static 'webapp/style.css' %}">
+        <header><center><h1>Student Dashboard</h1></center></header>
+       
+        
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <p class="{{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
+        <div style="margin-left: 90%;">
+            <p><strong>Welcome {{name.first_name}} {{name.last_name}}</strong></p>
+            <p><a href="{% url 'webapp:app' name.id %}">Send Application</a></p>
+            <p><a href="/webapp/logout">Log Out</a></p>
+        </div>
+
+       
+     
+        {% if applications %}
+
+        <br>
+            <h2>Applications</h2>
+            <table>
+                <tr>
+                    <th>University Name</th>
+                    <th>Program Name</th>
+                    <th>Study Mode</th>
+                    <th>Status</th>
+                </tr>
+                {% for a in applications %}
+                    <tr>
+                        <td>{{a.uni_name}}</td>
+                        <td>{{a.program_name}}</td>
+                        <td>{{a.study_mode}}</td>
+                        <td>{{a.status}}</td>
+                    </tr>
+
+                {% endfor %}
+        </table>
+
+        {% else %}
+            
+            <p>No applications</p>
+
+        {% endif %}
+
+        {% else %}
+        <p>you are logged out</p>
+        <a href="/webapp">click here to go to home page</a>
+        {%  endif %}
+        </center>
+        
+    </body>
+</html>
+
+
+

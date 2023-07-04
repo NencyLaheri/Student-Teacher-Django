@@ -1,0 +1,30 @@
+<html>
+<head>
+<style>
+td,th{
+    padding: 10px;
+}
+</style>
+</head>
+<body>
+        {% if request.session.email %}
+        <center>
+        <div style="margin-left: 94%;">
+            <p><a href="/webapp/student/{{name.id}}">Home</a></p>
+        </div>
+        <form action="" method="post">
+            <h1>Application</h1>
+                {% csrf_token %}  
+                <table>
+                    {{ form.as_table}} 
+                </table><br>
+            <button type="submit" class="save btn btn-default">Submit</button>  
+        </form>
+        
+        {% else %}
+        <p>you are logged out</p>
+        <a href="/webapp">click here to go to home page</a>
+        {%  endif %}
+    </center>
+    </body>
+</html>

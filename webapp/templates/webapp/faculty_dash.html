@@ -1,0 +1,63 @@
+<html>
+<head>
+
+</head>
+    <body>
+        <center>
+        {% if request.session.email %}       
+        {% load static%}
+        <link rel="stylesheet" href="{% static 'webapp/style.css' %}">
+        <header><center><h1>Faculty Dashboard</h1></center></header>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <p class="{{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            </ul>
+          {% endif %}
+
+        <div style="margin-left: 90%;">
+            <p><strong>Welcome {{name.first_name }} {{name.last_name}}</strong></p>
+            <p><a href="/webapp/logout">Log Out</a></p>
+        </div>
+        
+        
+        <br>
+            <form action="" method="get">
+            {% csrf_token %}
+                <h2>Student's Applications</h2>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>University Name</th>
+                            <th>Program Name</th>
+                            <th>Study Mode</th>
+                            <th>Status</th>
+                            <th>Change Status</th>
+                            
+                        </tr>
+                        {% for a in applications %}
+                            <tr>
+                                <td>{{a.customer.first_name}} {{a.customer.last_name}}</td>
+                                <td>{{a.customer.email}}</td>
+                                <td>{{a.uni_name}}</td>
+                                <td>{{a.program_name}}</td>
+                                <td>{{a.study_mode}}</td>
+                                <td>{{a.status}}</td>
+                               
+                                <td><a href="{% url 'webapp:update' name.id  a.app_id %}">Upda te</a></td>
+                            </tr>
+
+                        {% endfor %}
+                    </table>
+
+            </form>
+        {% else %}
+        <p>you are logged out</p>
+        <a href="/webapp">click here to go to home page</a>
+        <!-- {% url 'webapp:login' %} -->
+        {%  endif %}
+        </center>
+     </body>
+</html>

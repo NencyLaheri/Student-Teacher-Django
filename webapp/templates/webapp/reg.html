@@ -1,0 +1,31 @@
+<html>
+<head>
+<style>
+td,th{
+    padding: 10px;
+}
+</style>
+</head>
+    <body>
+        <center>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        
+        <form action="" method="post">
+            
+            <h1>Registraion</h1>
+            {% csrf_token %}  
+            
+            <table>
+            {{ form.as_table}} 
+            </table><br>
+            <button type="submit" class="save btn btn-default">Submit</button>  
+        </form>
+        </center>
+    </body>
+</html>

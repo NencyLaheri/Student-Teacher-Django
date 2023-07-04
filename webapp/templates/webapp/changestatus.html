@@ -1,0 +1,76 @@
+<html>
+<head>
+    {% load static%}
+   
+<style>
+table{
+    border: 0px;
+    text-align: left;
+}
+td,th{
+    padding: 7px;
+   
+    padding-inline: 25px;
+}
+
+</style>
+
+</head>
+<body>
+    {% if request.session.email %}   
+    <br><br>
+    <center>
+
+            
+        {% load static%} 
+        <form action="{% url 'webapp:change' id application.app_id %}" method="post">
+            {% csrf_token %}
+            <h2>Change Status</h2>
+            <table>
+
+                <tr>
+                    <th>Name :  </th>
+                    <td>{{application.customer.first_name}} {{application.customer.last_name}}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{application.customer.email}}</td>
+                </tr>
+                <tr>
+                    <th>University Name</th>
+                    <td>{{application.uni_name}}</td>
+                </tr>
+                <tr>
+                    <th>Program Name</th>
+                    <td>{{application.program_name}}</td>
+                </tr>
+                <tr>
+                    <th>Study Mode</th>
+                    <td>{{application.study_mode}}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>
+                        <select name="cstatus">
+                            <option value="">None</option>
+                            <option value="accepted">Accept</option>
+                            <option value="rejected">Reject</option>
+                        </select>
+                    </td>
+                </tr>
+                
+            </table>
+            <br>
+            <button type="submit" class="save btn btn-default">Submit</button>
+        </form>
+        
+        
+    
+    {% else %}
+    <p>you are logged out</p>
+    <a href="/webapp">click here to go to home page</a>
+    {%  endif %}
+    
+    </center>
+</body>
+</html>
